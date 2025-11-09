@@ -1,0 +1,57 @@
+--// GUI Setup
+local keyRequired = "CAUBECHIMteo"
+local player = game.Players.LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+-- Create GUI
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local MainFrame = Instance.new("Frame", ScreenGui)
+local UICorner = Instance.new("UICorner", MainFrame)
+local Title = Instance.new("TextLabel", MainFrame)
+local KeyBox = Instance.new("TextBox", MainFrame)
+local SubmitBtn = Instance.new("TextButton", MainFrame)
+-- Design Main Frame
+MainFrame.Size = UDim2.new(0, 300, 0, 200)
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+MainFrame.Active = true
+MainFrame.Draggable = true
+-- Title
+Title.Text = "🔑 Nhập Key"
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.BackgroundTransparency = 1
+Title.TextScaled = true
+Title.TextColor3 = Color3.new(1,1,1)
+-- Key Box
+KeyBox.Position = UDim2.new(0.1, 0, 0.4, 0)
+KeyBox.Size = UDim2
+KeyBox.PlaceholderText = "Nhập Key..."
+KeyBox.Text = ""
+KeyBox.TextScaled = true
+-- Submit Button
+SubmitBtn.Position = UDim2.new(0.25, 0, 0.7, 0)
+SubmitBtn.Size = UDim2.new(0.5, 0, 0.2, 0)
+SubmitBtn.Text = "Xác Nhận"
+SubmitBtn.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+SubmitBtn.TextColor3 = Color3.new(1,1,1)
+SubmitBtn.TextScaled = true
+-- Function: Load Features
+local function loadFeatures()
+Title.Text = "🎮 Chức năng"
+KeyBox:Destroy()
+SubmitBtn:Destroy()
+local function teleportToPlayer(targetName)
+local targetPlayer = game.Players:FindFirstChild(targetName)
+if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+local myChar = player.Character
+if myChar and myChar:FindFirstChild("HumanoidRootPart") then
+myChar.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 5, 0)
+end
+else
+Title.Text = "❌ Không tìm thấy người chơi!"
+end
+end
+local btns = {
+{"Tàng Hình", function()
+local char = player.Character
+if char then
+for _, part in pairs(char:GetDescendan
